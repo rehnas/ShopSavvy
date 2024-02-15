@@ -1,0 +1,44 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1" align="center">
+
+            <tr>
+                <td align="center" colspan="2"><img src="{{USER.newuser_photo.url}}" alt="{{USER.newuser_photo.url}}" width="120px" height="120px" style="border-radius: 50px;"></td>
+            </tr>
+        <tr>
+            <th>Name</th>
+           <td>{{USER.newuser_name}}</td>
+        </tr>   
+        <tr>
+            <th>contact</th>
+            <td>{{USER.newuser_contact}}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{USER.newuser_email}}
+            </td>
+         </tr>
+
+         <tr>
+            <td>address</td>
+          <td>{{USER.newuser_address}} </td>    
+        </tr>
+</table>
+</form>
+</body>
+</html>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+            <table border="1">
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="txtname" value="{{Admindata.Admin_name}}"></td>
+            </tr>
+            <tr>
+                <th>contact</th>
+                <td><input type="text" name="txtnum"  value="{{Admindata.Admin_contact}}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="txtemail" value="{{Admindata.Admin_email}}">
+                </td>
+        </tr>
+        
+        <tr>
+                <td>password</td>
+                <td> <input type="password" name="txtpassword" value="{{Admindata.Admin_password}}"></td>
+                </td>
+        </tr>
+        <tr>
+            <td colspan "2" align="center">
+            <input type="submit" name="submit" value="submit">
+            </td>
+        </tr>
+    </table>
+    </form>
+    <table border="1" align="center">
+       <tr>    
+           <th>Sl.no</th>
+           <th> Name</th>
+           <th>contact</th>
+           <th>Email</th>
+           <th>Password</th>
+           <th>Action</th>
+       </tr>
+       {% for i in Admin %}
+       <tr>
+       <td>{{forloop.counter}}</td>
+       <td>{{i.Admin_name}}</td>
+       <td>{{i.Admin_contact}}</td>
+       <td>{{i.Admin_email}}</td>
+       <td>{{i.Admin_password}}</td>
+       <td><a href="{% url 'webadmin:delete_admin' i.id %}">Delete</a> |
+       <a href="{% url 'webadmin:edit_Admin' i.id %}">edit</a></td>
+   </tr>
+       {% endfor %}
+       </table>
+   
+</body>
+</html>
+        

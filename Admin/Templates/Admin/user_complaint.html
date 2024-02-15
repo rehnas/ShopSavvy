@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" align="center">
+        <tr>
+            <th>SI NO.</th>
+            <th>user name</th>
+            <th>date</th>
+            <th>title</th>
+            <th>content</th>
+            <th>Replay</th>
+        </tr>
+        {% for i in Ucomplaint %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.newuser_name}}</td>
+            <td>{{i.complaint_date}}</td>
+            <td>{{i.complaint_title}}</td>
+            <td>{{i.complaint_content}}</td>
+            
+            <td>
+                {% if i.complaint_status == 0 %}
+                <p><a href="{% url 'webadmin:Replay' i.id %}">Replay</a></p>
+                {% else %}
+                <p>{{i.complaint_replay}}</p>
+                {% endif %}
+            </td>
+            
+        </tr>
+        {% endfor %} 
+        </table>
+
+</body>
+</html>

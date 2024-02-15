@@ -1,0 +1,60 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}      
+          <table border="1">
+        
+        <tr>
+                <td>Brand</td>
+                <td>
+                <input type="text" name="txtname" value="{{branddata.Brand_name}}" >            
+             </td>
+        </tr>
+        <tr>
+        
+            <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="submit">
+                    <input type="reset" name="btncancel" value="cancel">
+            
+            </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </form>
+            <table border="1" align="center">
+            <tr>    
+                <th>Sl.no</th>
+                <th>Brand</th>
+                <th>Action</th>
+            </tr>
+            {% for i in Brand %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Brand_name}}</td>
+            <td><a href="{% url 'webadmin:delete_Brand' i.id %}">Delete</a>
+                <a href="{% url 'webadmin:edit_brand' i.id %}">edit</a></td>
+        </tr>
+            {% endfor %}
+            </table>
+        
+        </body>
+        </html>
+        
+        {% endblock content %}

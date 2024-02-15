@@ -1,0 +1,53 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+     {% csrf_token %}
+     <table border="1">
+        
+    </form>
+    <table border="1" align="center">
+        <tr>
+            <th>sl.no</th>
+            <th>item</th>
+            <th>price</th>
+            <th>category</th>
+            <th>details</th>
+            <th>image</th>
+            <th>action</th>
+        </tr>
+        {% for i in Data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product.item_name}}</td>
+            <td>{{i.product.product_price}}</td>
+            <td>{{i.product.product_category}}</td>
+            <td>{{i.product.product_details}}</td>
+            <td><img src="{{i.product.product_image.url}}" alt="{{i.product.product_image.url}}" width="120px" height="120px"></td>
+            <td><a href="{% url 'webuser:checkout' i.id %}">checkout</a></td>
+        
+       
+    </tr>
+        {% endfor %} 
+        </table>
+    </form>
+        </tr>
+
+        </table>
+     </table>
+
+
+  
+</body>
+</html>
+{% endblock content %}

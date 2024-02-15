@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+            <table border="1">
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="txtname"></td>
+            </tr>
+                <tr>
+                    <td>  gender</td>
+                    <td colspan="3"><input type= "radio" name="gender" value="male"checked>male
+                    <input type="radio" name="gender" value="female"checked>female
+                    </td>
+                </tr>
+           <tr>
+                <td>Department</td>
+                <td>
+                <select name="ddldept">
+                <option value="sel">---select----</option>
+                <option value="cs">computer science</option>
+                     <option value="it">information technology</option>
+                     <option value="mech">mechanical</option>
+                     <option value="civil">civil</option>
+    
+                 </select>
+                </td>
+         </tr>
+                <tr>
+                 <th>
+                    salary</th>
+                 <td><input type="text" name="txtno"></td>
+               </tr>
+             <tr>
+                <td colspan "2" align="center">
+                <input type="submit" name="submit" value="submit">
+                <input type="reset" name="btnreset" value="cancel">
+                </td>
+             </tr>
+             </table>
+             </form>
+             <table border="1" align="center">
+                <tr>    
+                    <th>Sl.no</th>
+                    <th>employee</th>
+                    <th>Action</th>
+                </tr>
+                {% for i in employee %}
+                <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.employee_name}}</td>
+                <td><a href="{% url 'webadmin:delete_employee' i.id %}">Delete</a></td>
+            </tr>
+                {% endfor %}
+                </table>
+            
+</body>
+</html>
